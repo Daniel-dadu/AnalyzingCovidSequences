@@ -1,0 +1,234 @@
+---
+title: "Evidencia 2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Proyecto integrador
+
+**Alumno:** Daniel Esteban Maldonado Espitia
+
+**Matrícula:** A01657967
+
+**Fecha:** 28 de abril del 2021
+
+---
+
+## PARTE 1
+
+Enlace al video: https://youtu.be/YiqoTvCiCmc
+
+## PARTE 2
+
+1. **Análisis de las secuencias de SARS-CoV-2 reportadas en los 20 países con más casos reportados:**
+
+De acuerdo con los datos proporcionados por la Universidad John Hopkins, los 20 países con más casos reportados de Covid son:
+
+1. [EUA](https://www.ncbi.nlm.nih.gov/nuccore/MZ008250.1?report=fasta)
+2. [India](https://www.ncbi.nlm.nih.gov/nuccore/MW927136.1?report=fasta)
+3. [Brasil](https://www.ncbi.nlm.nih.gov/nuccore/MW592707.1?report=fasta)
+4. [Francia](https://www.ncbi.nlm.nih.gov/nuccore/MW580244.1?report=fasta)
+5. [Rusia](https://www.ncbi.nlm.nih.gov/nuccore/MW741552.1?report=fasta)
+6. [Turquia](https://www.ncbi.nlm.nih.gov/nuccore/MW308549.1?report=fasta)
+7. [Reino Unido](https://www.ncbi.nlm.nih.gov/nuccore/OD906774.1?report=fasta)
+8. [Italia](https://www.ncbi.nlm.nih.gov/nuccore/MW852494.1?report=fasta)
+9. [España](https://www.ncbi.nlm.nih.gov/nuccore/MW769706.1?report=fasta)
+10. [Alemania](https://www.ncbi.nlm.nih.gov/nuccore/MW822592.1?report=fasta)
+11. [Argentina](https://www.ncbi.nlm.nih.gov/nuccore/MW633892.1?report=fasta)
+12. [Colombia](https://www.ncbi.nlm.nih.gov/nuccore/MT470219.1?report=fasta)
+13. [Polonia](https://www.ncbi.nlm.nih.gov/nuccore/MW273783.1?report=fasta)
+14. [Irán](https://www.ncbi.nlm.nih.gov/nuccore/MW737421.1?report=fasta)
+15. [México](https://www.ncbi.nlm.nih.gov/nuccore/MW884219.1?report=fasta)
+16. Ucrania (No se encontró)
+17. [Perú](https://www.ncbi.nlm.nih.gov/nuccore/MW938089.1?report=fasta)
+18. Indonesia (No se encontró)
+19. [República Checa](https://www.ncbi.nlm.nih.gov/nuccore/MT517420.1?report=fasta)
+20. [Sudáfrica](https://www.ncbi.nlm.nih.gov/nuccore/MW981442.1?report=fasta)
+21. [Holanda](https://www.ncbi.nlm.nih.gov/nuccore/MW577029.1?report=fasta)
+22. [Canada](https://www.ncbi.nlm.nih.gov/nuccore/MW309426.1?report=fasta)
+
+```{r, warning=FALSE}
+library("seqinr")
+eua <- read.fasta("fastaPaises/EUA.fasta")
+india <- read.fasta("fastaPaises/India.fasta")
+brasil <- read.fasta("fastaPaises/Brasil.fasta")
+francia <- read.fasta("fastaPaises/Francia.fasta")
+rusia <- read.fasta("fastaPaises/Rusia.fasta")
+turquia <- read.fasta("fastaPaises/Turquia.fasta")
+uk <- read.fasta("fastaPaises/R_Unido.fasta")
+italia <- read.fasta("fastaPaises/Italia.fasta")
+espana <- read.fasta("fastaPaises/Espana.fasta")
+alemania <- read.fasta("fastaPaises/Alemania.fasta")
+argentina <- read.fasta("fastaPaises/Argentina.fasta")
+colombia <- read.fasta("fastaPaises/Colombia.fasta")
+polonia <- read.fasta("fastaPaises/Polonia.fasta")
+iran <- read.fasta("fastaPaises/Iran.fasta")
+mexico <- read.fasta("fastaPaises/Mexico.fasta")
+peru <- read.fasta("fastaPaises/Peru.fasta")
+rCheca <- read.fasta("fastaPaises/R_Checa.fasta")
+sudafrica <- read.fasta("fastaPaises/Sudafrica.fasta")
+holanda <- read.fasta("fastaPaises/Holanda.fasta")
+canada <- read.fasta("fastaPaises/Canada.fasta")
+```
+
+2. **Calcula la longitud de las secuencias que incluyas.**
+
+```{r}
+printSize <- function(){
+  print(paste("El tamaño de la secuencia de Estados Unidos es: ",length(eua[[1]])))
+  print(paste("El tamaño de la secuencia de India es: ",length(india[[1]])))
+  print(paste("El tamaño de la secuencia de Brasil es: ",length(brasil[[1]])))
+  print(paste("El tamaño de la secuencia de Francia es: ",length(francia[[1]])))
+  print(paste("El tamaño de la secuencia de Rusia es: ",length(rusia[[1]])))
+  print(paste("El tamaño de la secuencia de Turquía es: ",length(turquia[[1]])))
+  print(paste("El tamaño de la secuencia de Reino Unido es: ",length(uk[[1]])))
+  print(paste("El tamaño de la secuencia de Italia es: ",length(italia[[1]])))
+  print(paste("El tamaño de la secuencia de España es: ",length(espana[[1]])))
+  print(paste("El tamaño de la secuencia de Alemania es: ",length(alemania[[1]])))
+  print(paste("El tamaño de la secuencia de Argentina es: ",length(argentina[[1]])))
+  print(paste("El tamaño de la secuencia de Colombia es: ",length(colombia[[1]])))
+  print(paste("El tamaño de la secuencia de Polonia es: ",length(polonia[[1]])))
+  print(paste("El tamaño de la secuencia de Irán es: ",length(iran[[1]])))
+  print(paste("El tamaño de la secuencia de México es: ",length(mexico[[1]])))
+  print(paste("El tamaño de la secuencia de Perú es: ",length(peru[[1]])))
+  print(paste("El tamaño de la secuencia de República Checa es: ",length(rCheca[[1]])))
+  print(paste("El tamaño de la secuencia de Sudáfrica es: ",length(sudafrica[[1]])))
+  print(paste("El tamaño de la secuencia de Holanda es: ",length(holanda[[1]])))
+  print(paste("El tamaño de la secuencia de Canadá es: ",length(canada[[1]])))
+}
+printSize() # Se realizó una función para tener una vista más comoda del resultado
+```
+
+3. **Crea una sola gráfica donde se comparen el número de bases de ADN que componen todas las variantes del virus.**
+
+Se crearon 3 gráficas ya que al ser tantas secuencias/países, era mejor dividir en sub gráficas para visualizar de mejor forma los datos. Además, como existen secuencias que cuentan con nucleotidos indefinidos, es conveniente separar estas en otra gráfica.
+
+```{r, warning=FALSE, message=FALSE, out.width = "100%"}
+library("tidyverse")
+
+tibble(Nt = c("a","c","g","t"),
+                  EUA = table(eua[[1]]),
+                    India = table(india[[1]]),
+                    Brasil = table(brasil[[1]]),
+                    Francia = table(francia[[1]]),
+                    Rusia = table(rusia[[1]]),
+                    Turquia = table(turquia[[1]]),
+                    Italia = table(italia[[1]]),
+                    Espana = table(espana[[1]]),
+                    Argentina = table(argentina[[1]]),
+                    Colombia = table(colombia[[1]]),
+                    Polonia = table(polonia[[1]]),
+                    Iran = table(iran[[1]]),
+                    Peru = table(peru[[1]]),
+                    Rep_Checa = table(rCheca[[1]]),
+                    Holanda = table(holanda[[1]])) %>%
+gather(key = Species, value = Freq, EUA,India,Brasil,Francia,Rusia,Turquia,Italia,Espana) %>%
+ggplot(aes())+
+  geom_col(aes(x = Nt, y=Freq, fill = Nt))+
+  facet_grid(~Species)+
+  theme(legend.position = "none")
+
+tibble(Nt = c("a","c","g","t"),
+                    Argentina = table(argentina[[1]]),
+                    Colombia = table(colombia[[1]]),
+                    Polonia = table(polonia[[1]]),
+                    Iran = table(iran[[1]]),
+                    Peru = table(peru[[1]]),
+                    Rep_Checa = table(rCheca[[1]]),
+                    Holanda = table(holanda[[1]])) %>%
+gather(key = Species, value = Freq,Argentina,Colombia,Polonia,Iran,Peru,Rep_Checa,Holanda) %>%
+ggplot(aes())+
+  geom_col(aes(x = Nt, y=Freq, fill = Nt))+
+  facet_grid(~Species)+
+  theme(legend.position = "none")
+
+# Gráfica con secuencias que tienen el nucleotido "n" (cualquiera)
+tibble(Nt = c("a","c","g","n","t"),
+                    UK = table(uk[[1]]),
+                    Alemania = table(alemania[[1]]),
+                    Mexico = table(mexico[[1]]),
+                    Sudafrica = table(sudafrica[[1]]),
+                    Canada = table(canada[[1]])) %>%
+gather(key = Species, value = Freq,UK,Alemania,Mexico, Sudafrica, Canada) %>%
+ggplot(aes())+
+  geom_col(aes(x = Nt, y=Freq, fill = Nt))+
+  facet_grid(~Species)+
+  theme(legend.position = "none")
+```
+
+4. **Agrega un análisis jerárquico global obtenido de las secuencias que se seleccionaron para estudiar.**
+
+```{r, warning=FALSE, results='hide', message=FALSE, out.width = "100%"}
+# Importamos las librerías necesarias 
+library(ape)
+library(DECIPHER)
+library(adegenet)
+library(viridis)
+library(ggmsa)
+
+# Descargamos las secuencias y las cargamos en un archivo local
+secNames <- c("MZ008250.1","MW927136.1","MW592707.1","MW580244.1","MW741552.1","MW308549.1","OD906774.1","MW852494.1","MW769706.1","MW822592.1","MW633892.1","MT470219.1","MW273783.1","MW737421.1","MW884219.1","MW938089.1","MT517420.1","MW981442.1","MW577029.1","MW309426.1")
+secuencias <- read.GenBank(secNames)
+write.dna(secuencias,  file ="allSecs.fasta", format = "fasta", append = FALSE, nbcol = 6, colsep = " ", colw = 10)
+
+# Creamos el gráfico para visualizar la alineación de secuencias
+fileSecs <- readDNAStringSet("allSecs.fasta", format = "fasta")
+seqNotAlign <- OrientNucleotides(fileSecs)
+seqNotAlign <- OrientNucleotides(seqNotAlign)
+seqAlign <- AlignSeqs(seqNotAlign)
+ggmsa(seqAlign, 320, 360, color = "Chemistry_AA")
+
+# Guardamos las secuencias alineadas en un archivo y lo importamos para generar la matriz de distancia
+writeXStringSet(seqAlign, file="allSecsAlign.fasta")
+secsAlignment <- read.alignment("allSecsAlign.fasta", format = "fasta")
+matriz <- dist.alignment(secsAlignment, matrix = "similarity")
+temp <- as.data.frame(as.matrix(matriz))
+table.paint(temp, cleg=0, clabel.row=.5, clabel.col=.5) + scale_color_viridis()
+
+# A partir de la matriz, generamos el arbol filogenético
+seqTree <- nj(matriz)
+seqTree <- ladderize(seqTree)
+plot(seqTree, cex = 0.6)
+title("Arbol filogenético de las secuencias del SARS-CoV-2 de 20 países")
+```
+
+5. **Agrega una interpretación escrita de tus gráficas y tus conclusiones según el caso de estudio que seleccionaste. No olvides sustentar tus argumentos con las lecturas que realizaste.**
+
+Después de realizar la representación de los datos en múltiples gráficas, se puede observar claramente que todas las secuencias tienen una longitud bastante similar, manteniéndose en un rango de entre 295000 y 30000. Además, al representar el número de bases de ADN de cada variante en un gráfico de barras, se puede determinar que existe una similitud muy grande entre las secuencias, algo que tiene mucho sentido al tratarse del mismo virus en cada caso. 
+
+Cabe destacar que sí existe una peculiaridad en 5 de las variantes que se consideraron en este análisis, específicamente son la de Alemania, Canadá, México, Sudáfrica y Reino Unido. Estas secuencias, a diferencia de las demás, cuentan con nucleótidos "N", usados para representar cualquier base (A, G, C o T). Al ser pocas los nucleótidos "N" en estos casos, estos no tuvieron gran repercusión en estos gráficos por lo que todos siguen viéndose muy similares.
+
+Ahora bien, si se desean observar verdaderas diferencias entre estas variantes, es necesario analizar los resultados y gráficos generados en el análisis jerárquico global de estas secuencias.
+
+Después de realizar la alineación de secuencias por medio de la función "AlignSeqs()" de la librería DECIPHER y mostrar un fragmento de ella, generamos una matriz de distancia la cual se interpreta de la siguiente manera: las secuencias más similares o cercanas tienen un color más claro en su intersección, demostrado en la diagonal blanca donde se encuentran las secuencias con sí mismas, mientras que las más oscuras tienen menor similitud o cercanía. Además, si pasamos al árbol filogenético, el cual toma los datos de dicha matriz, podemos observar con una representación más clara las secuencias más cercanas o similares entre sí.
+
+Ahora bien, si analizamos los casos específicos de variantes similares que se encuentran en el mismo cluster, como es el caso de la secuencia "MW769706.1", que es de España, y la "OD906774.1", que es de Reino Unido, o el caso de la secuencia "MW822592.1", que es de Alemania, y la "MW580244.1", que es de Francia, se puede observar que hay una existe cierta relación entre las secuencias del continente europeo. Ahora, sí se observa el caso de la secuencia "MW884219.1", que es de México, y la secuencia "MW592707.1", que es de Brasil, y destacando que ambos de igual forma se encuentran en el mismo cluster, por lo que cuentan con gran similitud, se puede determinar que efectivamente las variantes de cada región o continente tienden a ser muy similares entre sí. 
+
+Asimismo, si se observa el caso de la secuencia "MW737421.1", que es de Irán, dentro de la matriz de distancia, se puede percibir como claramente esta no tiene una gran similitud con prácticamente ninguna de las secuencias de los demás países, algo que sugiere que dicha variante ha tenido poca interacción con otras variantes del virus.
+
+Por último, si observamos la variante "MZ008250.1", proveniente de Estados Unidos, dentro de la matriz de distancias, se puede percibir como esta tiene gran similitud con las variantes de Reino Unido y España, pero no tanta con la peruana ("MW938089.1") que es de su mismo continente. Esto me lleva a la conclusión de que, a pesar de que exista una mayor similitud entre las secuencias pertenecientes a una misma región geográfica, esto no quiere decir que no puedan tener similitud con variantes de otros continentes. Además, también percibo que influyen mucho las conexiones que cada país tiene con otras naciones, ya que por ejemplo países como Irán que se encuentran mucho más marginados geopolíticamente cuentan con variantes con menos similitudes a las de otros países con más flujo de entrada y salida de personas.
+
+### Referencias
+
+JOHN HOPKINS. (2020). *COVID-19 Dashboard by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University (JHU).* jhu.edu https://coronavirus.jhu.edu/map.html
+
+National Center for Biotechnology Information. (2020). *Severe acute respiratory syndrome coronavirus 2 data hub*. National Library of Medicine. https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide&VirusLineage_ss=Severe%20acute%20respiratory%20syndrome%20coronavirus%202,%20taxid:2697049&Completeness_s=complete
+
+NCBI. (s. f.). *Nucleotide.* ncbi.nlm.nih.gov. Recuperado 28 de abril de 2021, de https://www.ncbi.nlm.nih.gov/nucleotide/
+
+EMBL-EBI. (s. f.). *Clustal Omega.* ebi.ac.uk. Recuperado 28 de abril de 2021, de https://www.ebi.ac.uk/Tools/msa/clustalo/
+
+#### Citas de librerías
+
+```{r}
+citation("seqinr")
+citation("tidyverse")
+citation("ape")
+citation("DECIPHER")
+citation("adegenet")
+citation("viridis")
+citation("ggmsa")
+```
